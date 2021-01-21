@@ -7,6 +7,7 @@ public class Planet {
     public double mass;
     public String imgFileName;
     public static final double G=6.67e-11;
+    
 	
 	public Planet(double xP, double yP, double xV,
               double yV, double m, String img){
@@ -83,6 +84,10 @@ public class Planet {
 		this.yyPos =yyPos+dt*yyVel;
 	}
 
-
+	public void draw(){
+		String imageToDraw = "images/"+imgFileName;
+		StdDraw.picture(xxPos, yyPos, imageToDraw);
+		StdDraw.show();
+	}
 
 }
