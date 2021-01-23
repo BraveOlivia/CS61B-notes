@@ -1,8 +1,9 @@
-import java.util.ArrayList;
+
 
 public class NBody{
 
 	private static String bgimage = "images/starfield.jpg";
+
 	public static double readRadius(String filename){
 		In in = new In(filename);
 
@@ -83,6 +84,6 @@ public class NBody{
     			StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
                   planets[i].xxPos, planets[i].yyPos, planets[i].xxVel,
                   planets[i].yyVel, planets[i].mass, planets[i].imgFileName);   
-}
+		}
 	}
 }
