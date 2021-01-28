@@ -53,6 +53,7 @@ public class IntList {
         }
         IntList res = new IntList(L.first * L.first, null);
         IntList ptr = res;
+
         L = L.rest;
         while (L != null) {
             ptr.rest = new IntList(L.first * L.first, null);
@@ -82,18 +83,23 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
+        IntList res = new IntList(A.first, null);
+        IntList ptr = res;
+        IntList p = A.rest;
 
-//        while (L != null) {
-//            L.first = L.first * L.first;
-//            L = L.rest;
-//        }
+        while (p != null) {
+            ptr.rest = new IntList(p.first, null);
+            p = p.rest;
+            ptr = ptr.rest;
+        }
 
-//        while (B != null) {
-//            A.first = A.first;
-//            A = A.rest;
-//        }
-
-        return null;
+        p=B;
+        while (p != null) {
+            ptr.rest = new IntList(p.first, null);
+            p = p.rest;
+            ptr = ptr.rest;
+        }
+        return res;
     }
 
 
@@ -102,17 +108,22 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
+        IntList res = new IntList(A.first, null);
+        IntList ptr = res;
+        IntList p = A.rest;
 
-        IntList res = null;
-        IntList a = A;
-        IntList b = B;
-
-        while (a!= null){
-            res = new IntList(a.first, res);
-            a = a.rest;
+        while (p != null) {
+            ptr.rest = new IntList(p.first, null);
+            p = p.rest;
+            ptr = ptr.rest;
         }
 
+        p=B;
+        while (p != null) {
+            ptr.rest = new IntList(p.first, null);
+            p = p.rest;
+            ptr = ptr.rest;
+        }
         return res;
     }
 
@@ -121,7 +132,11 @@ public class IntList {
         IntList L = new IntList(15,null);
         L = new IntList(10, L);
         L = new IntList(5, L);
-        System.out.println(L.get(1));
+
+        IntList B = new IntList(99,null);
+        B = new IntList(19, B);
+        B = new IntList(9, B);
+        IntList res = catenate(L, B);
     }
 
     public int get(int i){
