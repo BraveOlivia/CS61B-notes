@@ -5,7 +5,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -82,22 +82,14 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        IntList res = new IntList(A.first, null);
-        IntList ptr = res;
-        IntList p = A.rest;
-
-        while (p != null) {
-            ptr.rest = new IntList(p.first, null);
-            p = p.rest;
-            ptr = ptr.rest;
+        IntList res = A;
+        while (A != null) {
+            res.first = A.first;
+            A = A.rest;
         }
-
-        p=B;
-        while (p != null) {
-            ptr.rest = new IntList(p.first, null);
-            p = p.rest;
-            ptr = ptr.rest;
+        while (B != null) {
+            res.first = B.first;
+            B = B.rest;
         }
         return res;
     }
@@ -108,6 +100,13 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
+        if (A == null && B == null) {
+            return null;
+        } else if (A == null) {
+            return B;
+        } else if (B == null) {
+            return A;
+        }
         IntList res = new IntList(A.first, null);
         IntList ptr = res;
         IntList p = A.rest;
@@ -118,7 +117,7 @@ public class IntList {
             ptr = ptr.rest;
         }
 
-        p=B;
+        p = B;
         while (p != null) {
             ptr.rest = new IntList(p.first, null);
             p = p.rest;
@@ -129,25 +128,22 @@ public class IntList {
 
 
     public static void main(String[] args) {
-        IntList L = new IntList(15,null);
+        IntList L = new IntList(15, null);
         L = new IntList(10, L);
         L = new IntList(5, L);
 
-        IntList B = new IntList(99,null);
+        IntList B = new IntList(99, null);
         B = new IntList(19, B);
         B = new IntList(9, B);
         IntList res = catenate(L, B);
     }
 
-    public int get(int i){
-        if(i==0){
+    public int get(int i) {
+        if (i == 0) {
             return first;
         }
-        return rest.get(i-1);
+        return rest.get(i - 1);
     }
-
-
-
 
 
     /**
