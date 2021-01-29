@@ -82,23 +82,16 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        if (A == null && B == null) {
-            return null;
-        } else if (A == null) {
+//        A.rest.rest.rest = new IntList(B.first,null);
+//        A.rest.rest.rest.rest = new IntList(B.rest.first,null);
+//        A.rest.rest.rest.rest.rest = new IntList(B.rest.rest.first,null);
+
+        if (A == null)
             return B;
-        } else if (B == null) {
+        else {
+            A.rest = dcatenate (A.rest, B);
             return A;
         }
-        IntList res = A;
-        while (A != null) {
-            res.first = A.first;
-            A = A.rest;
-        }
-        while (B != null) {
-            res.first = B.first;
-            B = B.rest;
-        }
-        return res;
     }
 
 
@@ -107,12 +100,8 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        if (A == null && B == null) {
-            return null;
-        } else if (A == null) {
+        if (A == null) {
             return B;
-        } else if (B == null) {
-            return A;
         }
         IntList res = new IntList(A.first, null);
         IntList ptr = res;
@@ -142,7 +131,7 @@ public class IntList {
         IntList B = new IntList(99, null);
         B = new IntList(19, B);
         B = new IntList(9, B);
-        IntList res = catenate(L, B);
+        IntList res = dcatenate(L, B);
     }
 
     public int get(int i) {
