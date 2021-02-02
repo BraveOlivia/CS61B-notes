@@ -40,7 +40,6 @@ public class LinkedListDeque<T> {
         first.next = oldFirst;
         oldFirst.prev = first;
 
-//        System.out.println("first item -> " + first.item);
         size++;
     }
 
@@ -68,25 +67,12 @@ public class LinkedListDeque<T> {
 
     public void printDeque() {
         LinkedNode p = sentinel;
-        String nextString = "";
-        String preString ="";
+        String res = "";
         while (p.next != sentinel) {
-            nextString += (p.next.item + " ");
+            res += (p.next.item + " ");
             p = p.next;
         }
-//        p = sentinel;
-//        while (p.prev != null) {
-//            preString += (p.prev.item + " ");
-//            p = p.prev;
-//        }
-//        preString = preString.substring(0,preString.length()-1);
-//        while(preString.length()!=0){
-//            if (preString.substring(preString.length()-1)!=" "){
-//                nextString += preString.substring(preString.length()-1);
-//            }
-//            preString = preString.substring(0,preString.length()-1);
-//        }
-        System.out.println(nextString);
+        System.out.println(res);
     }
 
     public T removeFirst() {
@@ -94,6 +80,7 @@ public class LinkedListDeque<T> {
         T f = first.item;
         first = first.next;
         sentinel.next = first;
+        first.prev = sentinel;
         return f;
     }
 
@@ -101,20 +88,43 @@ public class LinkedListDeque<T> {
         size--;
         T l = last.item;
         last = last.prev;
+        last.next = sentinel;
         sentinel.prev = last;
         return l;
     }
 
     /*Iteration*/
     public T get(int index) {
-        if(size -1 < index){
+        if(size -1 < index || index<0){
             return null;
         }
-        return null;
+        LinkedNode p = sentinel.next;
+        int i = 0;
+        while (i!=index){
+            i++;
+            p = p.next;
+        }
+        return p.item;
     }
 
+    private T get_recursion(int number, LinkedNode p) {
+        if (number == 0){
+            return p.item;
+        } else {
+            return p.next.item;
+        }
+    }
+
+
     public T getRecursive(int index) {
-        return null;
+        LinkedNode pointer = null;
+        if (index==0){
+            pointer = sentinel.next;
+            return pointer.item;
+        } else {
+            pointer = pointer.next;
+            return getRecursive(index-1);
+        }
     }
 
     public static void main(String[] args) {
@@ -127,17 +137,21 @@ public class LinkedListDeque<T> {
         l.addLast(7);
         l.printDeque();
         System.out.println("1.The size of the list -> " + l.size());
-        System.out.println("remove first item -> "+l.removeFirst());
-        System.out.println("remove last item -> "+l.removeLast());
+//        System.out.println("remove first item -> "+l.removeFirst());
+//        System.out.println("remove last item -> "+l.removeLast());
+//        System.out.println("1.The size of the list -> " + l.size());
         l.printDeque();
-//        System.out.println("______________________");
-//        System.out.println(l.sentinel.item);//null
-//        System.out.println(l.first.item); //3
-//        System.out.println(l.first.prev.item);//null
-//        System.out.println(l.first.prev.prev.item); //7
-//        System.out.println(l.first.prev.prev.prev.item);//5
-//        System.out.println(l.first.prev.prev.prev.prev.item);//1
-//        System.out.println(l.first.prev.prev.prev.prev.prev.item);//3
+        System.out.println("______________________");
 
+        System.out.println(l.getRecursive(0));
+        System.out.println(l.getRecursive(1));
+        System.out.println(l.getRecursive(2));
+        System.out.println(l.getRecursive(3));
+        System.out.println(l.getRecursive(4));
+        System.out.println(l.getRecursive(5));
+//        System.out.println(l.sentinel.next.item);
+//        System.out.println(l.sentinel.next.next.item);
+//        System.out.println(l.sentinel.next.next.next.item);
+//        System.out.println(l.sentinel.next.next.next.next.item);
     }
 }
