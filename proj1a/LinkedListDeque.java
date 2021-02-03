@@ -1,7 +1,7 @@
 public class LinkedListDeque<T> {
 
-    public class LinkedNode {
-        public T item;
+    private class LinkedNode {
+        private T item;
         private LinkedNode next;
         private LinkedNode prev;
 
@@ -13,9 +13,9 @@ public class LinkedListDeque<T> {
     }
 
     private T DEFAULT_ITEM;
-    public LinkedNode sentinel;
-    public LinkedNode last;
-    public LinkedNode first;
+    private LinkedNode sentinel;
+    private LinkedNode last;
+    private LinkedNode first;
     private int size;
 
     public LinkedListDeque() {
@@ -40,7 +40,7 @@ public class LinkedListDeque<T> {
         first.next = oldFirst;
         oldFirst.prev = first;
 
-        if(size == 0){
+        if (size == 0) {
             last = first;
         }
         size++;
@@ -55,7 +55,7 @@ public class LinkedListDeque<T> {
         last.prev = oldLast;
         oldLast.next = last;
 
-        if(size == 0){
+        if (size == 0) {
             first = last;
         }
         size++;
@@ -120,11 +120,9 @@ public class LinkedListDeque<T> {
     private T get_recursion(int number, LinkedNode p) {
         if (number == 0) {
             return p.item;
-        } else {
-            return p.next.item;
         }
+        return get_recursion(number-1, p.next);
     }
-
 
     public T getRecursive(int index) {
         LinkedNode pointer = sentinel.next;
@@ -132,38 +130,27 @@ public class LinkedListDeque<T> {
             return pointer.item;
         }
         pointer = pointer.next;
-        return getRecursive(index - 1);
+        return get_recursion(index-1, pointer);
     }
 
     public static void main(String[] args) {
         LinkedListDeque<Integer> l = new LinkedListDeque();
         l.addLast(8);
-//        l.addFirst(1);
-//        l.addLast(2);
-//        l.addFirst(3);
-//        l.addLast(5);
+        l.addFirst(1);
+        l.addLast(2);
+        l.addFirst(3);
+        l.addLast(5);
         l.addLast(7);
         l.printDeque();
-        System.out.println("1.The size of the list -> " + l.size());
-        System.out.println("remove first item -> "+l.removeFirst());
-        System.out.println("1______________________");
-        l.printDeque();
-        System.out.println("remove last item -> "+l.removeLast());
-        System.out.println("2______________________");
-        l.printDeque();
-        System.out.println("remove last item -> "+l.removeLast());
-        System.out.println("remove last item -> "+l.removeLast());
-        System.out.println("1.The size of the list -> " + l.size());
-//        System.out.println("1.The size of the list -> " + l.size());
-        l.printDeque();
-//        System.out.println("______________________");
-//
-//        System.out.println(l.getRecursive(0));
-//        System.out.println(l.getRecursive(1));
-//        System.out.println(l.getRecursive(2));
-//        System.out.println(l.getRecursive(3));
-//        System.out.println(l.getRecursive(4));
-//        System.out.println(l.getRecursive(5));
+        System.out.println("The size of the list -> " + l.size());
 
+        System.out.println("______________________");
+
+        System.out.println(l.getRecursive(0));
+        System.out.println(l.getRecursive(1));
+        System.out.println(l.getRecursive(2));
+        System.out.println(l.getRecursive(3));
+        System.out.println(l.getRecursive(4));
+        System.out.println(l.getRecursive(5));
     }
 }
