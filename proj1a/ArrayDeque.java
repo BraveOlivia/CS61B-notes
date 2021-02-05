@@ -88,12 +88,12 @@ public class ArrayDeque<T> {
 
     private void increaseSize() {
         resizing((items.length) * 2);
-        System.out.println("increase size as " + items.length);
+//        System.out.println("increase size as " + items.length);
     }
 
     private void shrinkSize() {
         resizing((items.length) / 2);
-        System.out.println("decrease size as " + items.length);
+//        System.out.println("decrease size as " + items.length);
     }
 
     private void resizing(int capacity) {
