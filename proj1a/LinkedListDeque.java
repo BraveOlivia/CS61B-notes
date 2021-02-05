@@ -121,7 +121,7 @@ public class LinkedListDeque<T> {
         if (number == 0) {
             return p.item;
         }
-        return getRecursion(number-1, p.next);
+        return getRecursion(number - 1, p.next);
     }
 
     public T getRecursive(int index) {
@@ -129,27 +129,7 @@ public class LinkedListDeque<T> {
         if (index == 0) {
             return pointer.item;
         }
-        return getRecursion(index-1, pointer.next);
+        return getRecursion(index - 1, pointer.next);
     }
 
-//    public static void main(String[] args) {
-//        LinkedListDeque<Integer> l = new LinkedListDeque();
-//        l.addLast(8);
-//        l.addFirst(1);
-//        l.addLast(2);
-//        l.addFirst(3);
-//        l.addLast(5);
-//        l.addLast(7);
-//        l.printDeque();
-//        System.out.println("The size of the list -> " + l.size());
-//
-//        System.out.println("______________________");
-//
-//        System.out.println(l.getRecursive(0));
-//        System.out.println(l.getRecursive(1));
-//        System.out.println(l.getRecursive(2));
-//        System.out.println(l.getRecursive(3));
-//        System.out.println(l.getRecursive(4));
-//        System.out.println(l.getRecursive(5));
-//    }
 }

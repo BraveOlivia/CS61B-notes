@@ -64,7 +64,7 @@ public class ArrayDeque<T> {
             return null;
         }
         T last = get(size - 1);
-        items[size-1] = null;
+        items[size - 1] = null;
         size--;
 
         if (size > 16 & getUsageRatio() < 0.25) {
@@ -88,12 +88,12 @@ public class ArrayDeque<T> {
 
     private void increaseSize() {
         resizing((items.length) * 2);
-//        System.out.println("increase size as " + items.length);
+        System.out.println("increase size as " + items.length);
     }
 
     private void shrinkSize() {
         resizing((items.length) / 2);
-//        System.out.println("decrease size as " + items.length);
+        System.out.println("decrease size as " + items.length);
     }
 
     private void resizing(int capacity) {
@@ -105,16 +105,19 @@ public class ArrayDeque<T> {
 
 //    public static void main(String[] args) {
 //        ArrayDeque<Integer> a = new ArrayDeque<>();
-//        int i=0;
-//        while (i<1000){
+//        int i = 0;
+//        while (i < 1000) {
 //            a.addFirst(i);
 //            i++;
 //        }
-//        i=0;
-//        while (i<999){
+//
+//        i = 0;
+//        while (i < 999) {
 //            a.removeFirst();
 //            i++;
 //        }
+//        a.printDeque();
+//
 ////        System.out.println("size is: "+a.items.length);
 //    }
 
