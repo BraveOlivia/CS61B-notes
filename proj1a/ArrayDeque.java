@@ -2,7 +2,7 @@ public class ArrayDeque<T> {
 
     private T[] items;
     private int size;
-    private final int Factor = 2;
+    private final int factor = 2;
 
     public ArrayDeque() {
         items = (T[]) new Object[8];
@@ -87,12 +87,12 @@ public class ArrayDeque<T> {
     }
 
     private void increaseSize() {
-        resizing((items.length) * 2);
+        resizing((items.length) * factor);
         System.out.println("increase size as " + items.length);
     }
 
     private void shrinkSize() {
-        resizing((items.length) / 2);
+        resizing((items.length) / factor);
         System.out.println("decrease size as " + items.length);
     }
 
@@ -103,23 +103,23 @@ public class ArrayDeque<T> {
     }
 
 
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> a = new ArrayDeque<>();
-//        int i = 0;
-//        while (i < 1000) {
-//            a.addFirst(i);
-//            i++;
-//        }
-//
+    public static void main(String[] args) {
+        ArrayDeque<Integer> a = new ArrayDeque<>();
+        int i = 0;
+        while (i < 65536) {
+            a.addFirst(i);
+            i++;
+        }
+
 //        i = 0;
-//        while (i < 999) {
+//        while (i < 65545) {
 //            a.removeFirst();
 //            i++;
 //        }
 //        a.printDeque();
-//
-////        System.out.println("size is: "+a.items.length);
-//    }
+
+//        System.out.println("size is: "+a.items.length);
+    }
 
 
 }
