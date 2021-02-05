@@ -117,11 +117,11 @@ public class LinkedListDeque<T> {
         return p.item;
     }
 
-    private T get_recursion(int number, LinkedNode p) {
+    private T getRecursion(int number, LinkedNode p) {
         if (number == 0) {
             return p.item;
         }
-        return get_recursion(number-1, p.next);
+        return getRecursion(number-1, p.next);
     }
 
     public T getRecursive(int index) {
@@ -129,7 +129,7 @@ public class LinkedListDeque<T> {
         if (index == 0) {
             return pointer.item;
         }
-        return get_recursion(index-1, pointer.next);
+        return getRecursion(index-1, pointer.next);
     }
 
 //    public static void main(String[] args) {

@@ -10,12 +10,12 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item) {
-        size += 1;
         if (size == items.length) {
             increaseSize();
         }
         System.arraycopy(items, 0, items, 1, size);
         items[0] = item;
+        size += 1;
     }
 
     public void addLast(T item) {
@@ -49,11 +49,11 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        T first = items[0];
+        T first = get(0);
         System.arraycopy(items, 1, items, 0, size - 1);
         items[size - 1] = null;
         size--;
-        if (size >=16 & getUsageRatio() < 0.25) {
+        if (size > 16 & getUsageRatio() < 0.25) {
             shrinkSize();
         }
         return first;
@@ -64,10 +64,10 @@ public class ArrayDeque<T> {
             return null;
         }
         T last = get(size - 1);
+        items[size-1] = null;
         size--;
-        items[size] = null;
 
-        if (size >=16 & getUsageRatio() < 0.25) {
+        if (size > 16 & getUsageRatio() < 0.25) {
             shrinkSize();
         }
         return last;
