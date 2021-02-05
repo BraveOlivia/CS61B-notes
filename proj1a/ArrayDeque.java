@@ -87,35 +87,36 @@ public class ArrayDeque<T> {
     }
 
     private void increaseSize() {
-        resizing(size * 2);
+        resizing((items.length) * 2);
         System.out.println("increase size as " + items.length);
     }
 
     private void shrinkSize() {
-        resizing(size / 2);
+        resizing((items.length) / 2);
         System.out.println("decrease size as " + items.length);
     }
 
     private void resizing(int capacity) {
         T[] copy = (T[]) new Object[capacity];
-        System.arraycopy(items, 0, copy, 0, size());
+        System.arraycopy(items, 0, copy, 0, size);
         items = copy;
     }
 
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        int i=0;
-        while (i<1000){
-            a.addFirst(i);
-            i++;
-        }
-        i=0;
-        while (i<998){
-            a.removeLast();
-            i++;
-        }
-    }
+//    public static void main(String[] args) {
+//        ArrayDeque<Integer> a = new ArrayDeque<>();
+//        int i=0;
+//        while (i<1000){
+//            a.addFirst(i);
+//            i++;
+//        }
+//        i=0;
+//        while (i<999){
+//            a.removeFirst();
+//            i++;
+//        }
+////        System.out.println("size is: "+a.items.length);
+//    }
 
 
 }
