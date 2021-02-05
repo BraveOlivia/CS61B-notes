@@ -1,6 +1,6 @@
 public class ArrayDeque<T> {
 
-    public T[] items;
+    private T[] items;
     private int size;
     private final int factor = 2;
 
@@ -101,8 +101,6 @@ public class ArrayDeque<T> {
         System.arraycopy(items, 0, copy, 0, size);
         items = copy;
     }
-
-
 
 
 }
