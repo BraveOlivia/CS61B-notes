@@ -2,7 +2,7 @@ public class ArrayDeque<T> {
 
     private T[] items;
     private int size;
-    private final int factor = 2;
+    private final int factor = 3;
 
     public ArrayDeque() {
         items = (T[]) new Object[8];
