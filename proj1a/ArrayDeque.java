@@ -2,6 +2,7 @@ public class ArrayDeque<T> {
 
     private T[] items;
     private int size;
+    private final int Factor = 2;
 
     public ArrayDeque() {
         items = (T[]) new Object[8];
@@ -10,80 +11,110 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         size += 1;
+        if (size == items.length) {
+            increaseSize();
+        }
         System.arraycopy(items, 0, items, 1, size);
         items[0] = item;
     }
 
     public void addLast(T item) {
+        if (size == items.length) {
+            increaseSize();
+        }
         items[size] = item;
         size += 1;
     }
 
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
+        return size == 0;
     }
 
     public int size() {
-        return size;
+        return Math.max(size, 0);
     }
 
     public void printDeque() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < size; i++) {
-            res += (items[i] + " ");
+            res.append(items[i]).append(" ");
         }
-        System.out.println(res.substring(0, res.length() - 1));
+        if (res.length() > 0) {
+            System.out.println(res.substring(0, res.length() - 1));
+        }
     }
 
     public T removeFirst() {
-        T first = items[0];
-        for (int i = 1; i < size; i++) {
-            items[i - i] = items[i];
+        if (size - 1 < 0) {
+            return null;
         }
+
+        T first = items[0];
+        System.arraycopy(items, 1, items, 0, size - 1);
         items[size - 1] = null;
+        size--;
+        if (size >=16 & getUsageRatio() < 0.25) {
+            shrinkSize();
+        }
         return first;
     }
 
     public T removeLast() {
-        T last = items[size - 1];
+        if (size - 1 < 0) {
+            return null;
+        }
+        T last = get(size - 1);
         size--;
-        items[size - 1] = null;
+        items[size] = null;
+
+        if (size >=16 & getUsageRatio() < 0.25) {
+            shrinkSize();
+        }
         return last;
     }
 
     public T get(int index) {
+        if (index < 0 || index > size - 1) {
+            return null;
+        }
         return items[index];
     }
 
-    private void handleSize(){
-        if(size < 16){
-            resizing(16);
-        } else {
-
-        }
+    private double getUsageRatio() {
+        double occupy = (double) size;
+        double capacity = items.length;
+        return occupy / capacity;
     }
 
-    private void resizing(int capacity){
+    private void increaseSize() {
+        resizing(size * 2);
+        System.out.println("increase size as " + items.length);
+    }
+
+    private void shrinkSize() {
+        resizing(size / 2);
+        System.out.println("decrease size as " + items.length);
+    }
+
+    private void resizing(int capacity) {
         T[] copy = (T[]) new Object[capacity];
-        System.arraycopy(items,0,copy,0,size());
+        System.arraycopy(items, 0, copy, 0, size());
         items = copy;
     }
 
+
     public static void main(String[] args) {
         ArrayDeque<Integer> a = new ArrayDeque<>();
-        a.addFirst(9);
-        a.addLast(5);
-        a.addFirst(2);
-        a.addLast(3);
-        a.addFirst(1);
-        a.printDeque();
-        System.out.println(a.get(0));
-        System.out.println(a.get(1));
-        System.out.println(a.get(2));
-        System.out.println(a.get(3));
+        int i=0;
+        while (i<1000){
+            a.addFirst(i);
+            i++;
+        }
+        i=0;
+        while (i<998){
+            a.removeLast();
+            i++;
+        }
     }
 
 
