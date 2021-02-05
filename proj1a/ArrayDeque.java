@@ -1,8 +1,8 @@
 public class ArrayDeque<T> {
 
-    private T[] items;
+    public T[] items;
     private int size;
-    private final int factor = 3;
+    private final int factor = 2;
 
     public ArrayDeque() {
         items = (T[]) new Object[8];
@@ -103,23 +103,6 @@ public class ArrayDeque<T> {
     }
 
 
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> a = new ArrayDeque<>();
-//        int i = 0;
-//        while (i < 65536) {
-//            a.addFirst(i);
-//            i++;
-//        }
-//
-////        i = 0;
-////        while (i < 65545) {
-////            a.removeFirst();
-////            i++;
-////        }
-////        a.printDeque();
-//
-////        System.out.println("size is: "+a.items.length);
-//    }
 
 
 }

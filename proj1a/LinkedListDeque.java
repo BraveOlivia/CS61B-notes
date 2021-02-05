@@ -131,5 +131,4 @@ public class LinkedListDeque<T> {
         }
         return getRecursion(index - 1, pointer.next);
     }
-
 }
