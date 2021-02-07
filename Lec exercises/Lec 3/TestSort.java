@@ -15,8 +15,8 @@ public class TestSort {
     }
 
     public static void main(String[] args) {
-        testFindSmallest(); // note: we changed this from testSort!
-        testSwap();
+//        testFindSmallest(); // note: we changed this from testSort!
+//        testSwap();
         testSort();
     }
 
@@ -34,7 +34,7 @@ public class TestSort {
         String[] input = {"b", "cave", "an", "egg"};
         String[] expected = {"an", "b", "cave", "egg"};
 
-//        Sort.sort(input);
+        Sort.sort(input);
         org.junit.Assert.assertArrayEquals(expected, input);
     }
 
